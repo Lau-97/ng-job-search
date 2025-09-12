@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/mini.css/dist/mini-dark.min.css";
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 
 /**
  * <span class="icon-star"></span>
@@ -16,6 +17,53 @@ span.icon-star {
 
 span.icon-star.active {
   background-color: gold; 
+}
+
+.job-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.job-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+justify-content: space-between; 
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.job-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.job-info {
+    flex: 1;  
+  display: flex;
+  flex-direction: column;
+}
+
+.job-title {
+  font-size: 1.25rem; 
+  font-weight: bold;
+  margin: 0;
+}
+
+.job-company {
+  font-size: 1rem;
+  color: #444;
+  margin: 0.25rem 0;
+}
+
+.job-reference {
+  font-size: 0.8rem; 
+  color: #777;
+  margin: 0;
 }
 
 
