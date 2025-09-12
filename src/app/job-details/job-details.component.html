@@ -1,1 +1,31 @@
+<button mat-button [routerLink]="['/home']" routerLinkActive="router-link-active" >
+    <mat-icon>home</mat-icon>
+</button>
+@if (job() ) {
+<section class="job-details">
+  <h1 class="job-title">{{ job()?.title }}</h1>
+  <p class="job-company">{{ job()?.companyName }}</p>
+  <p class="job-reference">Ref: {{ job()?.reference }}</p>
+
+  <img class="job-logo" [src]="job()?.companyLogo" [alt]="job()?.companyName" />
+
+  <p class="job-types">
+    <strong>Job Types:</strong> {{ job()?.types?.join(", ") }}
+  </p>
+  <p class="job-industries">
+    <strong>Industries:</strong> {{ job()?.industries?.join(", ") }}
+  </p>
+  <p class="job-location"><strong>Location:</strong> {{ job()?.location }}</p>
+  <p class="job-publish-date">
+    <strong>Published:</strong> {{ job()?.publishDate }}
+  </p>
+
+  <div class="job-description">
+    <h2>Description</h2>
+    <div [innerHTML]="job()?.description"></div>
+  </div>
+</section>
+} @else {
+<p>Loading...</p>
+}
 
