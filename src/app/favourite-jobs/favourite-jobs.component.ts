@@ -1,6 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, WritableSignal } from '@angular/core';
 import { JobService } from '../job.service';
 import { RouterModule } from '@angular/router';
+import { Job } from '../jobs/job';
+import { ROUTER_TOKENS } from '../app.routes.constant';
 @Component({
   selector: 'app-favourite-jobs',
   standalone: true,
@@ -9,10 +11,11 @@ import { RouterModule } from '@angular/router';
   styleUrl: './favourite-jobs.component.css',
 })
 export class FavouriteJobsComponent {
-  private jobService = inject(JobService);
-  jobsSignal = this.jobService.favouriteJobsSignal;
+  private jobService: JobService = inject(JobService);
+  protected readonly ROUTER_TOKENS = ROUTER_TOKENS;
+  protected jobsSignal: WritableSignal<Job[]> = this.jobService.favouriteJobsSignal;
 
-  removeFromFavorite(id: number) {
-    this.jobService.addToFavourites(id);
+  removeFromFavorite(id: number): void {
+    this.jobService.toggleFavourites(id);
   }
 }

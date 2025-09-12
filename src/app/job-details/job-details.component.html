@@ -1,31 +1,42 @@
-<button mat-button [routerLink]="['/home']" routerLinkActive="router-link-active" >
-    <mat-icon>home</mat-icon>
+<button
+  mat-button
+  [routerLink]="[ROUTER_TOKENS.HOME]"
+  routerLinkActive="router-link-active"
+>
+  <mat-icon>home</mat-icon>
 </button>
-@if (job() ) {
+@if (jobDetailsSignal()) {
 <section class="job-details">
-  <h1 class="job-title">{{ job()?.title }}</h1>
-  <p class="job-company">{{ job()?.companyName }}</p>
-  <p class="job-reference">Ref: {{ job()?.reference }}</p>
+  <h1 class="job-title">{{ jobDetailsValue.title }}</h1>
+  <p class="job-company">{{ jobDetailsValue.companyName }}</p>
+  <p class="job-reference">Ref: {{ jobDetailsValue.reference }}</p>
 
-  <img class="job-logo" [src]="job()?.companyLogo" [alt]="job()?.companyName" />
+  <img
+    class="job-logo"
+    [src]="jobDetailsValue.companyLogo"
+    [alt]="jobDetailsValue.companyName"
+  />
 
   <p class="job-types">
-    <strong>Job Types:</strong> {{ job()?.types?.join(", ") }}
+    <strong>Job Types:</strong> {{ jobDetailsValue.types.join(", ") }}
   </p>
   <p class="job-industries">
-    <strong>Industries:</strong> {{ job()?.industries?.join(", ") }}
+    <strong>Industries:</strong> {{ jobDetailsValue.industries.join(", ") }}
   </p>
-  <p class="job-location"><strong>Location:</strong> {{ job()?.location }}</p>
+  <p class="job-location">
+    <strong>Location:</strong> {{ jobDetailsValue.location }}
+  </p>
   <p class="job-publish-date">
-    <strong>Published:</strong> {{ job()?.publishDate }}
+    <strong>Published:</strong> {{ jobDetailsValue.publishDate }}
   </p>
 
   <div class="job-description">
     <h2>Description</h2>
-    <div [innerHTML]="job()?.description"></div>
+    <div [innerHTML]="jobDetailsValue.description"></div>
   </div>
 </section>
 } @else {
-<p>Loading...</p>
+<p style="text-align: center; font-weight: bold; margin-top: 10%">
+  The job has no matching details, or they are not currently available, sorry!
+</p>
 }
-

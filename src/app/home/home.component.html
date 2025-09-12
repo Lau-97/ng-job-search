@@ -1,4 +1,4 @@
-<mat-tab-group [selectedIndex]="selectedTabIndex" 
+<mat-tab-group [selectedIndex]="selectedTabIndex()" 
 (selectedTabChange)="onTabChange($event)" 
 style="background-color: rgb(204, 194, 238);">
   <mat-tab label="Jobs"></mat-tab>
@@ -6,4 +6,3 @@ style="background-color: rgb(204, 194, 238);">
 </mat-tab-group>
 
 <router-outlet></router-outlet>
-
