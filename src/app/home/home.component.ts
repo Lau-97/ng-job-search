@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { RouterModule, Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import {MatTabChangeEvent, MatTabsModule} from '@angular/material/tabs';
+import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
+import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
 import { filter } from 'rxjs';
 
 @Component({
@@ -8,12 +8,12 @@ import { filter } from 'rxjs';
   standalone: true,
   imports: [RouterModule, MatTabsModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  private router = inject(Router);
-  private route = inject(ActivatedRoute);
-  selectedTabIndex = 0;
+private router = inject(Router);
+private route = inject(ActivatedRoute)
+selectedTabIndex = 0;
 
   onTabChange(event: MatTabChangeEvent) {
     if (event.index === 0) {
@@ -23,10 +23,13 @@ export class HomeComponent {
     }
   }
 
+
+
   ngOnInit() {
+
     this.updateSelectedTab(this.router.url);
     this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
+      .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
         if (this.router.url.includes('/home/jobs')) {
           this.selectedTabIndex = 0;
@@ -39,7 +42,7 @@ export class HomeComponent {
   private updateSelectedTab(url: string) {
     const child = this.route.firstChild;
     if (child) {
-      const path = child.snapshot.url.map((seg) => seg.path).join('/');
+      const path = child.snapshot.url.map(seg => seg.path).join('/');
       if (path.startsWith('jobs')) {
         this.selectedTabIndex = 0;
       } else if (path.startsWith('favourites')) {

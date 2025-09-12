@@ -1,0 +1,16 @@
+<ul class="job-list">
+  @for (job of jobsSignal(); track job.id) {
+    <li class="job-item" [routerLink]="['/home/details', job.id]">
+      <img class="job-logo" [src]="job.companyLogo" [alt]="job.companyName" />
+      <div class="job-info">
+        <h2 class="job-title">{{ job.title }}
+        </h2>
+        <p class="job-company">{{ job.companyName }}</p>
+        <p class="job-reference">Ref: {{ job.reference }}</p>
+      </div>
+      <span class="icon-star" [class.active]="true" (click)="removeFromFavorite(job.id); $event.stopPropagation()"></span>
+    </li>
+  } @empty {
+    <p style="text-align: center; font-weight: bold; margin-top: 10%;">There are no favourites for now!</p>
+  }
+</ul>

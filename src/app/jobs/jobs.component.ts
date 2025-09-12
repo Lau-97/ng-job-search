@@ -13,6 +13,11 @@ export class JobsComponent {
 
  private jobService = inject(JobService)
   jobsSignal = this.jobService.jobsSignal;
+  isFavorite = this.jobService.isFavorite;
+
+  addToFavorites(id : number){
+    this.jobService.addToFavourites(id);
+  }
 
 }
 
