@@ -12,6 +12,7 @@
     </div>
     <span
       class="icon-star"
+      [id]="'star-' + job.id"
       [class.active]="true"
       (click)="removeFromFavorite(job.id); $event.stopPropagation()"
     ></span>
