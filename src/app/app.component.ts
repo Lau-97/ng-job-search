@@ -9,5 +9,5 @@ import { RouterModule } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'ng-job-search';
+  title = 'Find your job!';
 }

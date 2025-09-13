@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, Signal, signal, WritableSignal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Job, JobDetails } from './jobs/job';
+import { Job, JobDetails } from '../pages/jobs/job';
 
 @Injectable({
   providedIn: 'root',
