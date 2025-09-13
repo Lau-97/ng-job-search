@@ -1,18 +1,32 @@
 import { HttpClient } from '@angular/common/http';
-import { computed, inject, Injectable, Signal, signal, WritableSignal } from '@angular/core';
+import {
+  computed,
+  inject,
+  Injectable,
+  Signal,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { Observable } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Job, JobDetails } from '../pages/jobs/job';
+
+const FAVORITES_JOBS_STORAGE = 'favJobs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class JobService {
-  private http : HttpClient = inject(HttpClient);
-  jobsSignal : Signal<Job[]> = toSignal(this.getAllJobs(), { initialValue: [] as Job[] });
-  favouriteJobsSignal : WritableSignal<Job[]> = signal<Job[]>([]);
+  private http: HttpClient = inject(HttpClient);
+  public readonly jobsSignal: Signal<Job[]> = toSignal(this.getAllJobs(), {
+    initialValue: [] as Job[],
+  });
+  private favJobsStorage = localStorage.getItem(FAVORITES_JOBS_STORAGE);
+  public favouriteJobsSignal : WritableSignal<Job[]> = signal<Job[]>(
+    this.favJobsStorage ? JSON.parse(this.favJobsStorage) : []
+  );
 
-  isFavorite : (id: number) => Signal<boolean> = (id: number) =>
+  isFavorite: (id: number) => Signal<boolean> = (id: number) =>
     computed(() => !!this.favouriteJobsSignal().find((j) => j.id === id));
 
   getAllJobs(): Observable<Job[]> {
@@ -23,7 +37,7 @@ export class JobService {
     return this.http.get<JobDetails>(`/jobs/${id}`);
   }
 
-  toggleFavourites(id: number) : void {
+  toggleFavourites(id: number): void {
     const job = this.jobsSignal().find((j) => j.id === id);
     if (!job) return;
 
@@ -34,6 +48,9 @@ export class JobService {
     } else {
       this.favouriteJobsSignal.update((current) => [...current, job]);
     }
+    localStorage.setItem(
+    FAVORITES_JOBS_STORAGE,
+    JSON.stringify(this.favouriteJobsSignal())
+  );
   }
-
 }
