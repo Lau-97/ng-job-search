@@ -1,8 +1,10 @@
-<mat-tab-group [selectedIndex]="selectedTabIndex() ?? 0" 
-(selectedTabChange)="onTabChange($event)" 
-style="background-color: rgb(204, 194, 238);">
-  <mat-tab label="Jobs"></mat-tab>
-  <mat-tab label="Favourites"></mat-tab>
-</mat-tab-group>
+<nav class="tabs">
+  <a [routerLink]="['/', ROUTER_TOKENS.HOME, ROUTER_TOKENS.JOBS]" routerLinkActive="active">
+    Jobs
+  </a>
+  <a [routerLink]="['/', ROUTER_TOKENS.HOME, ROUTER_TOKENS.FAVOURITES]" routerLinkActive="active">
+    Favourites
+  </a>
+</nav>
 
 <router-outlet></router-outlet>

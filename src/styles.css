@@ -8,8 +8,8 @@
 span.icon-star {
   background-image: unset;
   background-color: gray;
-  width: 2rem;       
-  height: 2rem; 
+  width: 2rem;
+  height: 2rem;
   cursor: pointer;
   mask-size: cover;
   mask-repeat: no-repeat;
@@ -85,8 +85,35 @@ span.icon-star.active {
   margin-bottom: 0.5rem;
 }
 
-.job-description{
+.job-description {
   text-align: left;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 2px solid #ccc;
+  background-color: #e0dff0; /* colore simile a Material */
+}
+
+.tabs a {
+  text-align: center;
+  flex: 1;
+  padding: 12px 24px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.tabs a:hover {
+  color: #5b3ebf;
+}
+
+.tabs a.active {
+  border-bottom-color: #5b3ebf;
+  color: #5b3ebf;
+  font-weight: 600;
 }
 
 html,
